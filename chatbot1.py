@@ -41,7 +41,8 @@ def tweepy(message):
             count += 1
     	id = tweet.id
     	print(count)
-    return lista_topics[random.randrange(10)]
+    numero=len(lista_topics)
+    return lista_topics[random.randrange(numero)]
 #Creating GUI with tkinter
 #import tkinter
 #from tkinter import *
@@ -99,8 +100,9 @@ def chatbot_response(msg):
 @bot.message_handler(commands=['buscar', 'help'])
 def send_welcome(message):
     print(message)
-    bot.message_handler(func=lambda message: True) 
-    bot.reply_to(message,tweepy(message.text))
+    bot.message_handler(func=lambda message: True)
+    subcadena = message.text[7:] 
+    bot.reply_to(message,tweepy(subcadena))
 @bot.message_handler(func=lambda message: True)    
 def conversabot(message):
     bot.reply_to(message,chatbot_response(message.text))
